@@ -9,3 +9,4 @@
 
 :- use_module('core/grafo.pl').
 :- use_module('core/avance.pl').
+:- use_module('core/elegibilidad.pl').
