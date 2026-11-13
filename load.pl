@@ -8,3 +8,4 @@
 :- use_module('kb/perfiles.pl').
 
 :- use_module('core/grafo.pl').
+:- use_module('core/avance.pl').

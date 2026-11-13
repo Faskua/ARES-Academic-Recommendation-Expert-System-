@@ -14,7 +14,8 @@
     dificultad_optativa/2,
     oferta/2,
     prerrequisito_optativa/2,
-    cadena/2
+    cadena/2,
+    creditos_optativa/1
 ]).
 
 :- use_module(library(lists)).
@@ -53,6 +54,9 @@ optativa('TEO-03', 'Teoría de la Computación Avanzada', teoria, 5, ii, [lfc]).
 optativa('INV-01', 'Computación Gráfica', cientifica, 4, i, [alg_lineal, aed2]).
 optativa('INV-02', 'Bioinformática', cientifica, 4, ii, [ia, prob]).
 optativa('INV-03', 'Introducción a la Investigación', cientifica, 2, i, [is1, lfc]).
+
+%% Todas las optativas del catalogo otorgan la misma cantidad de creditos.
+creditos_optativa(10).
 
 %% ---------------------------------------------------------------------------
 %% Derivados
