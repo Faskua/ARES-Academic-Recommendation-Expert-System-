@@ -3,7 +3,7 @@
 Sistema experto en Prolog para recomendar asignaturas y planificar el avance académico de estudiantes de Ciencias de la Computación.
 
 - **Plan base:** FaMAF–UNC, 29 espacios curriculares (`PlanEstudio.md`).
-- **Estado:** Fase 1 completada (grafo, avance y elegibilidad). Fase 2 siguiente.
+- **Estado:** Fase 2 en curso (puntuación, recomendador y explicaciones). Faltan optativas y Trabajo Especial.
 - **Roadmap:** documento local de trabajo (no versionado).
 
 ## Requisitos
@@ -41,6 +41,9 @@ cargar cada módulo por separado:
 ?- use_module('core/grafo.pl').
 ?- use_module('core/avance.pl').
 ?- use_module('core/elegibilidad.pl').
+?- use_module('core/puntuacion.pl').
+?- use_module('core/recomendador.pl').
+?- use_module('core/explicaciones.pl').
 ```
 
 Consultas de ejemplo:
@@ -66,6 +69,16 @@ Consultas de ejemplo:
 
 % Avance del perfil
 ?- avance:avance(ana, Porcentaje).
+
+% Puntaje de una materia
+?- puntuacion:puntaje(beto, aed2, Puntos).
+
+% Recomendación para el cuatrimestre actual
+?- recomendador:recomendar(beto, Materias, Creditos).
+
+% Por qué se recomienda una materia
+?- explicaciones:por_que(beto, aed2, Razones).
+?- explicaciones:explicar(beto, aed2, Texto).
 ```
 
 ## Pruebas
@@ -90,6 +103,9 @@ core/
   grafo.pl         Cierre transitivo, desbloqueo y validación del plan.
   avance.pl        Créditos, materias aprobadas y porcentaje de avance.
   elegibilidad.pl  Materias y optativas cursables por perfil.
+  puntuacion.pl    Reglas de puntuación de materias (roadmap 8.2).
+  recomendador.pl  Ranking y selección respetando la carga máxima.
+  explicaciones.pl Razones y texto de cada recomendación.
 ui/                Interfaz CLI y persistencia (fase 3).
 tests/             Pruebas PLUnit (fases 1–5).
 docs/              Informe y documentación (fase 5).

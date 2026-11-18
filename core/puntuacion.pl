@@ -39,10 +39,11 @@ umbral_carga(Max, Umbral) :-
 
 %% Creditos de una materia del plan o de una optativa del catalogo.
 creditos_de(Curso, Creditos) :-
-    plan:creditos(Curso, Creditos).
-creditos_de(Curso, Creditos) :-
-    optativas:es_optativa(Curso),
-    optativas:creditos_optativa(Creditos).
+    (   plan:creditos(Curso, Creditos)
+    ->  true
+    ;   optativas:es_optativa(Curso),
+        optativas:creditos_optativa(Creditos)
+    ).
 
 %% Creditos de las materias que el perfil cursa actualmente.
 carga_actual(Perfil, Total) :-

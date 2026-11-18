@@ -11,3 +11,5 @@
 :- use_module('core/avance.pl').
 :- use_module('core/elegibilidad.pl').
 :- use_module('core/puntuacion.pl').
+:- use_module('core/recomendador.pl').
+:- use_module('core/explicaciones.pl').
