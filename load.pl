@@ -13,3 +13,5 @@
 :- use_module('core/puntuacion.pl').
 :- use_module('core/recomendador.pl').
 :- use_module('core/explicaciones.pl').
+:- use_module('core/optativas.pl').
+:- use_module('core/trabajo_especial.pl').

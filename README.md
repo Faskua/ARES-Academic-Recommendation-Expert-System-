@@ -3,7 +3,7 @@
 Sistema experto en Prolog para recomendar asignaturas y planificar el avance académico de estudiantes de Ciencias de la Computación.
 
 - **Plan base:** FaMAF–UNC, 29 espacios curriculares (`PlanEstudio.md`).
-- **Estado:** Fase 2 en curso (puntuación, recomendador y explicaciones). Faltan optativas y Trabajo Especial.
+- **Estado:** Fase 2 completada (obligatorias, optativas y Trabajo Especial). Fase 3 siguiente.
 - **Roadmap:** documento local de trabajo (no versionado).
 
 ## Requisitos
@@ -44,6 +44,8 @@ cargar cada módulo por separado:
 ?- use_module('core/puntuacion.pl').
 ?- use_module('core/recomendador.pl').
 ?- use_module('core/explicaciones.pl').
+?- use_module('core/optativas.pl').
+?- use_module('core/trabajo_especial.pl').
 ```
 
 Consultas de ejemplo:
@@ -79,6 +81,10 @@ Consultas de ejemplo:
 % Por qué se recomienda una materia
 ?- explicaciones:por_que(beto, aed2, Razones).
 ?- explicaciones:explicar(beto, aed2, Texto).
+
+% Par de optativas recomendado y área del Trabajo Especial
+?- selector_optativas:recomendar_par(ana, Par).
+?- trabajo_especial:area_trabajo_especial(ana, Area).
 ```
 
 ## Pruebas
@@ -106,6 +112,8 @@ core/
   puntuacion.pl    Reglas de puntuación de materias (roadmap 8.2).
   recomendador.pl  Ranking y selección respetando la carga máxima.
   explicaciones.pl Razones y texto de cada recomendación.
+  optativas.pl     Selección del par de optativas (módulo selector_optativas).
+  trabajo_especial.pl Área sugerida para el Trabajo Especial.
 ui/                Interfaz CLI y persistencia (fase 3).
 tests/             Pruebas PLUnit (fases 1–5).
 docs/              Informe y documentación (fase 5).
