@@ -87,6 +87,15 @@ Consultas de ejemplo:
 ?- trabajo_especial:area_trabajo_especial(ana, Area).
 ```
 
+## Uso de la interfaz
+
+```powershell
+swipl main.pl
+```
+
+El menú permite ver el perfil, el avance, la recomendación del cuatrimestre,
+el par de optativas y la explicación de una materia.
+
 ## Pruebas
 
 ```powershell
@@ -99,6 +108,7 @@ y ejecuta la suite PLUnit.
 ## Estructura
 
 ```
+main.pl            Punto de entrada de la interfaz.
 load.pl            Carga la base de conocimiento y los módulos de core/.
 run_tests.pl       Ejecuta todas las pruebas PLUnit.
 kb/
@@ -114,7 +124,9 @@ core/
   explicaciones.pl Razones y texto de cada recomendación.
   optativas.pl     Selección del par de optativas (módulo selector_optativas).
   trabajo_especial.pl Área sugerida para el Trabajo Especial.
-ui/                Interfaz CLI y persistencia (fase 3).
+ui/
+  menu.pl          Menú interactivo.
+  formato.pl       Tablas y textos de salida.
 tests/             Pruebas PLUnit (fases 1–5).
 docs/              Informe y documentación (fase 5).
 ```
