@@ -6,8 +6,10 @@
 
 test(opciones_disponibles) :-
     menu:opciones(Opciones),
-    length(Opciones, 6),
+    length(Opciones, 8),
     memberchk(perfil-_, Opciones),
+    memberchk(guardar-_, Opciones),
+    memberchk(cargar-_, Opciones),
     memberchk(salir-_, Opciones).
 
 test(opciones_tienen_descripcion) :-

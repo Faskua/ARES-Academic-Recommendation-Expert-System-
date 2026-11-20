@@ -3,7 +3,7 @@
 Sistema experto en Prolog para recomendar asignaturas y planificar el avance académico de estudiantes de Ciencias de la Computación.
 
 - **Plan base:** FaMAF–UNC, 29 espacios curriculares (`PlanEstudio.md`).
-- **Estado:** Fase 2 completada (obligatorias, optativas y Trabajo Especial). Fase 3 siguiente.
+- **Estado:** Fase 3 en curso (CLI y persistencia). Falta el guion de demo.
 - **Roadmap:** documento local de trabajo (no versionado).
 
 ## Requisitos
@@ -94,7 +94,15 @@ swipl main.pl
 ```
 
 El menú permite ver el perfil, el avance, la recomendación del cuatrimestre,
-el par de optativas y la explicación de una materia.
+el par de optativas y la explicación de una materia. También puede guardar y
+cargar perfiles como hechos Prolog en `datos/`:
+
+```prolog
+?- persistencia:guardar(ana).
+?- persistencia:cargar(ana).
+```
+
+`datos/` no se versiona: son perfiles de trabajo del usuario.
 
 ## Pruebas
 
@@ -127,6 +135,7 @@ core/
 ui/
   menu.pl          Menú interactivo.
   formato.pl       Tablas y textos de salida.
+  persistencia.pl  Guardar y cargar perfiles en datos/.
 tests/             Pruebas PLUnit (fases 1–5).
 docs/              Informe y documentación (fase 5).
 ```

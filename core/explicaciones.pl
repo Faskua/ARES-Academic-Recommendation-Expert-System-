@@ -50,12 +50,12 @@ texto(desbloquea(N, Cursos), Texto) :-
 
 texto(materia_nominal(Anio, Cuatrimestre), Texto) :-
     format(atom(Texto),
-           'esta en tu ano y cuatrimestre nominal (ano ~w, cuatrimestre ~w)',
+           'esta en tu año y cuatrimestre nominal (año ~w, cuatrimestre ~w)',
            [Anio, Cuatrimestre]).
 
 texto(requisito_de(Futuro), Texto) :-
     format(atom(Texto),
-           'es requisito directo de ~w, del ano siguiente',
+           'es requisito directo de ~w, del año siguiente',
            [Futuro]).
 
 texto(afinidad(Area), Texto) :-

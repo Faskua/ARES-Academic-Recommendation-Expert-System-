@@ -14,6 +14,7 @@
 ]).
 
 :- use_module('formato.pl').
+:- use_module('persistencia.pl').
 :- use_module(library(lists)).
 
 %% ---------------------------------------------------------------------------
@@ -26,6 +27,8 @@ opciones([
     recomendacion-'Recomendar materias del cuatrimestre',
     optativas-'Recomendar par de optativas',
     explicacion-'Explicar una materia',
+    guardar-'Guardar el perfil actual',
+    cargar-'Cargar un perfil guardado',
     salir-'Salir'
 ]).
 
@@ -36,8 +39,14 @@ opciones([
 menu :-
     writeln(''),
     writeln('=== ARES - Recomendacion academica ==='),
-    writeln('Perfiles disponibles: ana, beto, carla.'),
+    perfiles_disponibles,
     repetir.
+
+perfiles_disponibles :-
+    findall(Perfil, perfiles:estudiante(Perfil), Encontrados),
+    sort(Encontrados, Perfiles),
+    formato:lista(Perfiles, Texto),
+    format('Perfiles disponibles: ~w~n', [Texto]).
 
 repetir :-
     writeln(''),
@@ -70,9 +79,13 @@ ejecutar(optativas) :-
     con_perfil(mostrar_optativas).
 ejecutar(explicacion) :-
     con_perfil(mostrar_explicacion).
+ejecutar(guardar) :-
+    con_perfil(mostrar_guardado).
+ejecutar(cargar) :-
+    cargar_perfil.
 
 con_perfil(Objetivo) :-
-    write('Perfil (ana/beto/carla): '),
+    write('Perfil: '),
     flush_output,
     read(Perfil),
     (   perfiles:estudiante(Perfil)
@@ -151,4 +164,19 @@ mostrar_explicacion(Perfil) :-
                  format('  - ~w~n', [Texto])
                ))
     ;   format('~nNo hay informacion para ~w.~n', [Curso])
+    ).
+
+mostrar_guardado(Perfil) :-
+    persistencia:guardar(Perfil),
+    persistencia:archivo_perfil(Perfil, Archivo),
+    format('~nPerfil ~w guardado en ~w~n', [Perfil, Archivo]).
+
+cargar_perfil :-
+    write('Nombre del perfil guardado: '),
+    flush_output,
+    read(Nombre),
+    (   persistencia:cargar(Nombre)
+    ->  format('~nPerfil ~w cargado.~n', [Nombre]),
+        perfiles_disponibles
+    ;   format('~nNo hay un perfil guardado con ese nombre.~n', [])
     ).

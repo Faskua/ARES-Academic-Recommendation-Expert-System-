@@ -21,7 +21,11 @@
     recursa/2
 ]).
 
-:- dynamic cursa/2.
+%% Los hechos de los perfiles se pueden modificar al cargar un perfil
+%% guardado desde la CLI (ui/persistencia.pl).
+:- dynamic estudiante/1, anio_actual/2, cuatrimestre_actual/2,
+           promedio/2, max_creditos/2, objetivo/2, interes/2,
+           aprobo/2, cursa/2, recursa/2.
 
 %% Los hechos están agrupados por estudiante para facilitar la lectura,
 %% por eso los predicados no son contiguos.
