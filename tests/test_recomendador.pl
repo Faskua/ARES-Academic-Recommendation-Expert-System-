@@ -11,8 +11,8 @@ test(ana_recomendacion) :-
     Seleccion == [is2],
     Creditos =:= 10.
 
-test(beto_respeta_el_tope) :-
-    recomendador:recomendar(beto, Seleccion, Creditos),
+test(adrian_respeta_el_tope) :-
+    recomendador:recomendar(adrian, Seleccion, Creditos),
     Seleccion == [aed2],
     Creditos =:= 15.
 
@@ -21,8 +21,8 @@ test(carla_entra_justo_en_el_tope) :-
     Seleccion == [aed2, md2],
     Creditos =:= 25.
 
-test(beto_candidatos_ordenados) :-
-    recomendador:candidatos_puntuados(beto, Puntuados),
+test(adrian_candidatos_ordenados) :-
+    recomendador:candidatos_puntuados(adrian, Puntuados),
     Puntuados == [90-aed2, 60-md2].
 
 test(carla_candidatos_ordenados) :-
@@ -38,7 +38,7 @@ test(ana_candidatos_ordenados) :-
 %% ---------------------------------------------------------------------------
 
 test(nunca_supera_la_carga_maxima) :-
-    forall(member(Perfil, [ana, beto, carla]),
+    forall(member(Perfil, [ana, adrian, carla]),
            ( recomendador:recomendar(Perfil, _, Creditos),
              perfiles:max_creditos(Perfil, Max),
              Creditos =< Max
@@ -49,11 +49,11 @@ test(seleccionar_con_candidatos_desordenados) :-
     Seleccion == [aed2, md2].
 
 test(seleccionar_sin_candidatos) :-
-    recomendador:seleccionar_hasta(beto, [], Seleccion),
+    recomendador:seleccionar_hasta(adrian, [], Seleccion),
     Seleccion == [].
 
 test(recomendar_sobre_un_subconjunto) :-
-    recomendador:recomendar(beto, [md2], Seleccion, Creditos),
+    recomendador:recomendar(adrian, [md2], Seleccion, Creditos),
     Seleccion == [md2],
     Creditos =:= 10.
 

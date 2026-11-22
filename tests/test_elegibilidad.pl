@@ -6,8 +6,8 @@ test(ana_obligatorias_elegibles) :-
     findall(Curso, elegibilidad:elegible(ana, Curso), Cursos),
     Cursos == [is2].
 
-test(beto_elegibles) :-
-    findall(Curso, elegibilidad:elegible(beto, Curso), Cursos),
+test(adrian_elegibles) :-
+    findall(Curso, elegibilidad:elegible(adrian, Curso), Cursos),
     Cursos == [aed2, md2].
 
 test(carla_elegibles) :-
@@ -29,24 +29,24 @@ test(ana_optativa_ia01_no_en_segundo_cuatrimestre, [fail]) :-
 test(ana_no_puede_ia02, [fail]) :-
     elegibilidad:elegible_optativa(ana, 'IA-02').
 
-test(beto_sin_optativas) :-
-    findall(Optativa, elegibilidad:elegible_optativa(beto, Optativa), Optativas),
+test(adrian_sin_optativas) :-
+    findall(Optativa, elegibilidad:elegible_optativa(adrian, Optativa), Optativas),
     Optativas == [].
 
 test(ana_puede_trabajo_especial) :-
     elegibilidad:puede_trabajo_especial(ana).
 
-test(beto_no_puede_trabajo_especial, [fail]) :-
-    elegibilidad:puede_trabajo_especial(beto).
+test(adrian_no_puede_trabajo_especial, [fail]) :-
+    elegibilidad:puede_trabajo_especial(adrian).
 
 test(carla_no_puede_trabajo_especial, [fail]) :-
     elegibilidad:puede_trabajo_especial(carla).
 
 test(no_elegible_ya_aprobada, [fail]) :-
-    elegibilidad:elegible(beto, aed1).
+    elegibilidad:elegible(adrian, aed1).
 
 test(no_elegible_por_prerequisito, [fail]) :-
-    elegibilidad:elegible(beto, paradigmas).
+    elegibilidad:elegible(adrian, paradigmas).
 
 test(no_elegible_por_oferta, [fail]) :-
     elegibilidad:elegible(carla, prob).

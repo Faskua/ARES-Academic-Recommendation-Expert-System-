@@ -3,7 +3,7 @@
 Sistema experto en Prolog para recomendar asignaturas y planificar el avance académico de estudiantes de Ciencias de la Computación.
 
 - **Plan base:** FaMAF–UNC, 29 espacios curriculares (`PlanEstudio.md`).
-- **Estado:** Fase 3 en curso (CLI y persistencia). Falta el guion de demo.
+- **Estado:** Fase 4 en curso: planificador multsemestre listo; faltan *what-if* y alertas.
 - **Roadmap:** documento local de trabajo (no versionado).
 
 ## Requisitos
@@ -46,6 +46,7 @@ cargar cada módulo por separado:
 ?- use_module('core/explicaciones.pl').
 ?- use_module('core/optativas.pl').
 ?- use_module('core/trabajo_especial.pl').
+?- use_module('core/planificador.pl').
 ```
 
 Consultas de ejemplo:
@@ -64,7 +65,7 @@ Consultas de ejemplo:
 ?- perfiles:aprobo(ana, C).
 
 % Materias elegibles este cuatrimestre
-?- elegibilidad:elegible(beto, C).
+?- elegibilidad:elegible(adrian, C).
 
 % Qué desbloquea una materia
 ?- grafo:desbloquea(aed2, C).
@@ -73,18 +74,22 @@ Consultas de ejemplo:
 ?- avance:avance(ana, Porcentaje).
 
 % Puntaje de una materia
-?- puntuacion:puntaje(beto, aed2, Puntos).
+?- puntuacion:puntaje(adrian, aed2, Puntos).
 
 % Recomendación para el cuatrimestre actual
-?- recomendador:recomendar(beto, Materias, Creditos).
+?- recomendador:recomendar(adrian, Materias, Creditos).
 
 % Por qué se recomienda una materia
-?- explicaciones:por_que(beto, aed2, Razones).
-?- explicaciones:explicar(beto, aed2, Texto).
+?- explicaciones:por_que(adrian, aed2, Razones).
+?- explicaciones:explicar(adrian, aed2, Texto).
 
 % Par de optativas recomendado y área del Trabajo Especial
 ?- selector_optativas:recomendar_par(ana, Par).
 ?- trabajo_especial:area_trabajo_especial(ana, Area).
+
+% Plan multsemestre hasta el egreso y carga de un cuatrimestre
+?- planificador:plan_hasta_egreso(ana, Plan).
+?- planificador:plan_cuatrimestre(ana, 5-1, Cursos).
 ```
 
 ## Uso de la interfaz
@@ -122,7 +127,7 @@ run_tests.pl       Ejecuta todas las pruebas PLUnit.
 kb/
   plan.pl          Plan de estudios, correlatividades y predicados derivados.
   optativas.pl     Catálogo de 15 optativas con oferta y prerrequisitos.
-  perfiles.pl      Perfiles de Ana, Beto y Carla.
+  perfiles.pl      Perfiles de Ana, Adrian y Carla.
 core/
   grafo.pl         Cierre transitivo, desbloqueo y validación del plan.
   avance.pl        Créditos, materias aprobadas y porcentaje de avance.
@@ -132,6 +137,7 @@ core/
   explicaciones.pl Razones y texto de cada recomendación.
   optativas.pl     Selección del par de optativas (módulo selector_optativas).
   trabajo_especial.pl Área sugerida para el Trabajo Especial.
+  planificador.pl  Plan multsemestre hasta el egreso.
 ui/
   menu.pl          Menú interactivo.
   formato.pl       Tablas y textos de salida.

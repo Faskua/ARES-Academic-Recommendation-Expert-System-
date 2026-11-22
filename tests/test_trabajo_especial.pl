@@ -15,13 +15,13 @@ test(optativas_de_referencia_de_ana) :-
     trabajo_especial:optativas_elegidas(ana, Optativas),
     Optativas == ['IA-01', 'IA-03'].
 
-test(beto_sin_area, [fail]) :-
-    trabajo_especial:area_trabajo_especial(beto, _).
+test(adrian_sin_area, [fail]) :-
+    trabajo_especial:area_trabajo_especial(adrian, _).
 
 test(carla_sin_area, [fail]) :-
     trabajo_especial:area_trabajo_especial(carla, _).
 
-test(beto_sin_optativas_de_referencia, [fail]) :-
-    trabajo_especial:optativas_elegidas(beto, _).
+test(adrian_sin_optativas_de_referencia, [fail]) :-
+    trabajo_especial:optativas_elegidas(adrian, _).
 
 :- end_tests(trabajo_especial).

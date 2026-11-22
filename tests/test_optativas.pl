@@ -11,8 +11,8 @@ test(elegibles_de_ana) :-
     Optativas == ['IA-01', 'IA-03', 'INV-01', 'INV-03',
                   'SIS-01', 'SW-01', 'SW-03', 'TEO-01'].
 
-test(beto_sin_elegibles) :-
-    selector_optativas:optativas_elegibles(beto, Optativas),
+test(adrian_sin_elegibles) :-
+    selector_optativas:optativas_elegibles(adrian, Optativas),
     Optativas == [].
 
 test(carla_sin_elegibles) :-
@@ -31,8 +31,8 @@ test(optativa_sin_afinidad) :-
     selector_optativas:puntaje_optativa(ana, 'TEO-01', Puntos),
     Puntos =:= 0.
 
-test(optativa_riesgosa_para_beto) :-
-    selector_optativas:puntaje_optativa(beto, 'SIS-01', Puntos),
+test(optativa_riesgosa_para_adrian) :-
+    selector_optativas:puntaje_optativa(adrian, 'SIS-01', Puntos),
     Puntos =:= 5.
 
 %% ---------------------------------------------------------------------------
@@ -55,12 +55,12 @@ test(misma_area_no_bonifica_si_equilibra) :-
     selector_optativas:puntaje_par(carla, 'IA-01', 'IA-03', Puntos),
     Puntos =:= 0.
 
-test(cadena_para_beto) :-
-    selector_optativas:puntaje_par(beto, 'SIS-01', 'SIS-02', Puntos),
+test(cadena_para_adrian) :-
+    selector_optativas:puntaje_par(adrian, 'SIS-01', 'SIS-02', Puntos),
     Puntos =:= 30.
 
-test(par_de_dificultad_alta_para_beto) :-
-    selector_optativas:puntaje_par(beto, 'SIS-01', 'TEO-01', Puntos),
+test(par_de_dificultad_alta_para_adrian) :-
+    selector_optativas:puntaje_par(adrian, 'SIS-01', 'TEO-01', Puntos),
     Puntos =:= -20.
 
 %% ---------------------------------------------------------------------------
@@ -75,8 +75,8 @@ test(par_de_ana_respeta_oferta) :-
     selector_optativas:recomendar_par(ana, Par),
     \\+ memberchk('IA-02', Par).
 
-test(beto_sin_par, [fail]) :-
-    selector_optativas:recomendar_par(beto, _).
+test(adrian_sin_par, [fail]) :-
+    selector_optativas:recomendar_par(adrian, _).
 
 test(carla_sin_par, [fail]) :-
     selector_optativas:recomendar_par(carla, _).

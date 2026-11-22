@@ -54,10 +54,10 @@ test(hechos_de_ana) :-
     memberchk(aprobo(ana, aed2), Hechos),
     \+ memberchk(recursa(ana, _), Hechos).
 
-test(hechos_de_beto) :-
-    persistencia:hechos(beto, Hechos),
-    memberchk(perfil(beto, 3, 1, 6.5, 20, graduarse), Hechos),
-    memberchk(recursa(beto, aed2), Hechos).
+test(hechos_de_adrian) :-
+    persistencia:hechos(adrian, Hechos),
+    memberchk(perfil(adrian, 3, 1, 6.5, 20, graduarse), Hechos),
+    memberchk(recursa(adrian, aed2), Hechos).
 
 %% ---------------------------------------------------------------------------
 %% Guardar y cargar
@@ -100,7 +100,7 @@ test(eliminar_borra_el_archivo, [cleanup(persistencia_test_limpiar)]) :-
 %% ---------------------------------------------------------------------------
 
 test(archivo_por_defecto) :-
-    persistencia:archivo_perfil(beto, Archivo),
-    once(sub_atom(Archivo, _, _, _, 'datos/perfil_beto.pl')).
+    persistencia:archivo_perfil(adrian, Archivo),
+    once(sub_atom(Archivo, _, _, _, 'datos/perfil_adrian.pl')).
 
 :- end_tests(persistencia).

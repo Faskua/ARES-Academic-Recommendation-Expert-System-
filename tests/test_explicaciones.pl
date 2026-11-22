@@ -6,8 +6,8 @@
 %% Razones
 %% ---------------------------------------------------------------------------
 
-test(razones_de_beto_para_aed2) :-
-    explicaciones:por_que(beto, aed2, Razones),
+test(razones_de_adrian_para_aed2) :-
+    explicaciones:por_que(adrian, aed2, Razones),
     memberchk(desbloquea(20, _), Razones),
     memberchk(materia_nominal(2, 1), Razones),
     memberchk(requisito_de(ia), Razones),
@@ -40,12 +40,12 @@ test(texto_de_desbloqueo) :-
     once(sub_atom(Texto, _, _, _, 'desbloquea 20 materias')).
 
 test(todas_las_razones_tienen_texto) :-
-    forall(member(Perfil-Curso, [beto-aed2, carla-aed2, ana-is2]),
+    forall(member(Perfil-Curso, [adrian-aed2, carla-aed2, ana-is2]),
            forall(explicaciones:razon(Perfil, Curso, Razon),
                   explicaciones:texto(Razon, _))).
 
-test(explicar_beto) :-
-    explicaciones:explicar(beto, aed2, Texto),
+test(explicar_adrian) :-
+    explicaciones:explicar(adrian, aed2, Texto),
     atom(Texto),
     once(sub_atom(Texto, _, _, _, '90 puntos')),
     once(sub_atom(Texto, _, _, _, 'desbloquea 20 materias')).

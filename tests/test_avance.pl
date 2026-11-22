@@ -13,8 +13,8 @@ test(creditos_ana) :-
     avance:creditos_aprobados(ana, Creditos),
     Creditos =:= 242.
 
-test(creditos_beto) :-
-    avance:creditos_aprobados(beto, Creditos),
+test(creditos_adrian) :-
+    avance:creditos_aprobados(adrian, Creditos),
     Creditos =:= 112.
 
 test(creditos_carla) :-
@@ -25,8 +25,8 @@ test(obligatorias_ana) :-
     avance:obligatorias_aprobadas(ana, N),
     N =:= 23.
 
-test(obligatorias_beto) :-
-    avance:obligatorias_aprobadas(beto, N),
+test(obligatorias_adrian) :-
+    avance:obligatorias_aprobadas(adrian, N),
     N =:= 10.
 
 test(obligatorias_carla) :-
@@ -34,13 +34,13 @@ test(obligatorias_carla) :-
     N =:= 9.
 
 test(sin_optativas_aprobadas) :-
-    forall(member(Perfil, [ana, beto, carla]),
+    forall(member(Perfil, [ana, adrian, carla]),
            ( avance:optativas_aprobadas(Perfil, N),
              N =:= 0
            )).
 
 test(sin_trabajo_especial_aprobado) :-
-    forall(member(Perfil, [ana, beto, carla]),
+    forall(member(Perfil, [ana, adrian, carla]),
            \+ avance:trabajo_especial_aprobado(Perfil)).
 
 test(items_aprobados_ana) :-
@@ -52,8 +52,8 @@ test(avance_ana) :-
     Porcentaje > 85.0,
     Porcentaje < 86.0.
 
-test(avance_beto) :-
-    avance:avance(beto, Porcentaje),
+test(avance_adrian) :-
+    avance:avance(adrian, Porcentaje),
     Porcentaje > 39.0,
     Porcentaje < 40.0.
 

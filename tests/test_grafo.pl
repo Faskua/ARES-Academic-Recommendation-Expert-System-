@@ -35,8 +35,8 @@ test(aed2_desbloquea_cadena) :-
 test(aed2_desbloquea_optativa) :-
     once(grafo:desbloquea(aed2, 'IA-01')).
 
-test(desbloqueo_de_beto) :-
-    grafo:desbloquea(beto, aed2, N),
+test(desbloqueo_de_adrian) :-
+    grafo:desbloquea(adrian, aed2, N),
     N =:= 20.
 
 test(sin_ciclos, [fail]) :-

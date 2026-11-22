@@ -15,3 +15,4 @@
 :- use_module('core/explicaciones.pl').
 :- use_module('core/optativas.pl').
 :- use_module('core/trabajo_especial.pl').
+:- use_module('core/planificador.pl').

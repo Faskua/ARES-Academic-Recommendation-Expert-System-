@@ -2,7 +2,7 @@
 %%
 %% Tres situaciones deliberadamente distintas:
 %%   ana   : al dia, orientada a IA, decide optativas y Trabajo Especial.
-%%   beto  : recursante y trabajador, decide entre retomar o avanzar.
+%%   adrian  : recursante y trabajador, decide entre retomar o avanzar.
 %%   carla : atrasada, decide como repartir una carga maxima.
 %%
 %% cursa/2 significa "inscripto actualmente"; recursa/2 significa
@@ -70,30 +70,30 @@ aprobo(ana, logica).
 aprobo(ana, arq).
 
 %% ---------------------------------------------------------------------------
-%% Beto: 3.er año, recursa AED II, trabaja 30 hs/semana.
+%% Adrian: 3.er año, recursa AED II, trabaja 30 hs/semana.
 %% Aprueba hasta 2.o año, 1.er cuatrimestre, incluida Probabilidad.
 %% ---------------------------------------------------------------------------
-estudiante(beto).
-anio_actual(beto, 3).
-cuatrimestre_actual(beto, 1).
-promedio(beto, 6.5).
-max_creditos(beto, 20).
-objetivo(beto, graduarse).
-interes(beto, sistemas).
+estudiante(adrian).
+anio_actual(adrian, 3).
+cuatrimestre_actual(adrian, 1).
+promedio(adrian, 6.5).
+max_creditos(adrian, 20).
+objetivo(adrian, graduarse).
+interes(adrian, sistemas).
 
-aprobo(beto, nivelacion).
-aprobo(beto, md1).
-aprobo(beto, calc1).
-aprobo(beto, intro_alg).
-aprobo(beto, alg_lineal).
-aprobo(beto, calc2).
-aprobo(beto, aed1).
-aprobo(beto, anum).
-aprobo(beto, org).
-aprobo(beto, log_intro).
-aprobo(beto, prob).
+aprobo(adrian, nivelacion).
+aprobo(adrian, md1).
+aprobo(adrian, calc1).
+aprobo(adrian, intro_alg).
+aprobo(adrian, alg_lineal).
+aprobo(adrian, calc2).
+aprobo(adrian, aed1).
+aprobo(adrian, anum).
+aprobo(adrian, org).
+aprobo(adrian, log_intro).
+aprobo(adrian, prob).
 
-recursa(beto, aed2).
+recursa(adrian, aed2).
 
 %% ---------------------------------------------------------------------------
 %% Carla: 3.er año, atrasada, recursa AED II y Probabilidad.
