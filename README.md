@@ -144,8 +144,21 @@ swipl main.pl
 ```
 
 El menú permite ver el perfil, el avance, la recomendación del cuatrimestre,
-el par de optativas y la explicación de una materia. También puede guardar y
-cargar perfiles como hechos Prolog en `datos/`:
+el par de optativas, la explicación de una materia, las alertas de riesgo con
+la fecha estimada de egreso y la comparación de un escenario *what-if*.
+
+En la opción `whatif` el escenario se escribe como término Prolog terminado en
+punto, por ejemplo:
+
+```prolog
+max_creditos(20).
+[max_creditos(25), aprobar(md2)].
+```
+
+La salida muestra el egreso base y el alternativo, la diferencia en períodos y
+una tabla con las materias afectadas.
+
+El menú también puede guardar y cargar perfiles como hechos Prolog en `datos/`:
 
 ```prolog
 ?- persistencia:guardar(ana).
