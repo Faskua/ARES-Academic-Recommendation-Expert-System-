@@ -16,3 +16,5 @@
 :- use_module('core/optativas.pl').
 :- use_module('core/trabajo_especial.pl').
 :- use_module('core/planificador.pl').
+:- use_module('core/what_if.pl').
+:- use_module('core/riesgo.pl').

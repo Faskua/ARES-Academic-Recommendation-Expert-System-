@@ -3,7 +3,7 @@
 Sistema experto en Prolog para recomendar asignaturas y planificar el avance académico de estudiantes de Ciencias de la Computación.
 
 - **Plan base:** FaMAF–UNC, 29 espacios curriculares (`PlanEstudio.md`).
-- **Estado:** Fase 4 en curso: planificador multsemestre listo; faltan *what-if* y alertas.
+- **Estado:** Fase 4 completa: planificador multsemestre, *what-if* y alertas.
 - **Roadmap:** documento local de trabajo (no versionado).
 
 ## Requisitos
@@ -47,6 +47,8 @@ cargar cada módulo por separado:
 ?- use_module('core/optativas.pl').
 ?- use_module('core/trabajo_especial.pl').
 ?- use_module('core/planificador.pl').
+?- use_module('core/what_if.pl').
+?- use_module('core/riesgo.pl').
 ```
 
 Consultas de ejemplo:
@@ -90,7 +92,50 @@ Consultas de ejemplo:
 % Plan multsemestre hasta el egreso y carga de un cuatrimestre
 ?- planificador:plan_hasta_egreso(ana, Plan).
 ?- planificador:plan_cuatrimestre(ana, 5-1, Cursos).
+
+% Escenarios hipotéticos sin tocar el perfil original
+?- what_if:simular(carla, max_creditos(20), Plan).
+?- what_if:simular(adrian, [max_creditos(25), aprobar(md2)], Plan).
+?- what_if:comparar_planes(carla, max_creditos(20), Comparacion).
+
+% Alertas, cuellos de botella y fecha estimada de egreso
+?- riesgo:alertas(adrian, Alertas).
+?- riesgo:cuello_botella(aed2).
+?- riesgo:fecha_egreso(ana, Fecha).
 ```
+
+Un escenario es un cambio o una lista de cambios:
+
+| Cambio | Efecto |
+|---|---|
+| `max_creditos(N)` | Cambia el tope de créditos |
+| `promedio(N)` | Cambia el promedio |
+| `anio_actual(N)` / `cuatrimestre_actual(N)` | Reposiciona el avance |
+| `aprobar(C)` / `desaprobar(C)` | Agrega o quita una aprobada |
+| `cursar(C)` / `recursar(C)` | Marca la materia como en curso o recursada |
+| `postergar(C)` | Quita `C` del estado (no aprobada ni en curso) |
+| `interes(A)` / `agregar_interes(A)` / `sin_interes(A)` | Ajusta intereses |
+
+`simular/3` clona el perfil en un átomo temporal, aplica los cambios, planifica y borra el clon. El perfil original queda intacto.
+
+`comparar_planes/3` devuelve:
+
+```prolog
+comparacion(PlanBase, PlanAlternativo,
+            duracion(PeriodosBase, PeriodosAlternativo),
+            diferencia(Diferencia),
+            materias_afectadas([...])).
+```
+
+Las alertas son:
+
+| Alerta | Condición |
+|---|---|
+| `cuello_botella(C)` | `C` habilita directamente 3 o más cursos |
+| `materia_critica_sin_aprobar(C)` | Cuello de botella que no se cursa en el primer período |
+| `sobrecarga(Periodo, Creditos)` | Créditos del período > `max_creditos` |
+| `riesgo_atraso(Perfil)` | Egreso proyectado más allá del año nominal + 1 |
+| `conflicto_oferta(C)` | Materia elegible que el plan posterga |
 
 ## Uso de la interfaz
 
@@ -138,6 +183,8 @@ core/
   optativas.pl     Selección del par de optativas (módulo selector_optativas).
   trabajo_especial.pl Área sugerida para el Trabajo Especial.
   planificador.pl  Plan multsemestre hasta el egreso.
+  what_if.pl       Simulación de escenarios y comparación de planes.
+  riesgo.pl        Alertas, cuellos de botella y fecha de egreso.
 ui/
   menu.pl          Menú interactivo.
   formato.pl       Tablas y textos de salida.
