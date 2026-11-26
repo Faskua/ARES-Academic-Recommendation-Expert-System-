@@ -3,7 +3,7 @@
 Sistema experto en Prolog para recomendar asignaturas y planificar el avance académico de estudiantes de Ciencias de la Computación.
 
 - **Plan base:** FaMAF–UNC, 29 espacios curriculares (`PlanEstudio.md`).
-- **Estado:** Fase 4 completa: planificador multsemestre, *what-if* y alertas.
+- **Estado:** Proyecto completo (fases 0–5); 151 pruebas PLUnit en verde.
 - **Roadmap:** documento local de trabajo (no versionado).
 
 ## Requisitos
@@ -203,7 +203,7 @@ ui/
   formato.pl       Tablas y textos de salida.
   persistencia.pl  Guardar y cargar perfiles en datos/.
 tests/             Pruebas PLUnit (fases 1–5).
-docs/              Informe y documentación (fase 5).
+docs/              Informe, guion de exposición y diapositivas.
 ```
 
 ## Nota de instalación

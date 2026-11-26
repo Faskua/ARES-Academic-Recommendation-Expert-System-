@@ -1,6 +1,8 @@
 %% ARES - Pruebas del formato de salida
 
-:- use_module('../ui/formato.pl').
+%% Se carga el modulo sin importar predicados: las pruebas los llaman
+%% calificados y plan:creditos/2 ya esta importado en user.
+:- use_module('../ui/formato.pl', []).
 
 :- begin_tests(formato).
 

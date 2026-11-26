@@ -73,7 +73,7 @@ test(par_de_ana) :-
 
 test(par_de_ana_respeta_oferta) :-
     selector_optativas:recomendar_par(ana, Par),
-    \\+ memberchk('IA-02', Par).
+    \+ memberchk('IA-02', Par).
 
 test(adrian_sin_par, [fail]) :-
     selector_optativas:recomendar_par(adrian, _).
